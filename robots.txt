@@ -5,6 +5,7 @@ Disallow: /tmp/
 Disallow: /cgi-bin/
 Noindex: /thank-you.html
 Sitemap: https://walletstarter.com/sitemap.txt
+Sitemap: https://www.walletstarter.com/sitemap.txt
 Host: https://walletstarter.com
 
 # Prevent indexing of common tracking parameters
@@ -33,3 +34,4 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+

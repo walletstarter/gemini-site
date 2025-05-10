@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+Disallow: /draft/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+Noindex: /thank-you.html
+Sitemap: https://walletstarter.com/sitemap.txt
+Host: https://walletstarter.com
+
+# Prevent indexing of common tracking parameters
+Disallow: /*?utm_source=
+Disallow: /*?session_id=
+
+# Crawl delays for heavy bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+# Explicit allowance to major engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

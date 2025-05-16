@@ -47,6 +47,9 @@ WalletStarter was created as a proof-of-concept for:
 
 It includes minimal styling, fast routing, and no backend, making it ideal for learning or for use in small-scale referral ecosystems.
 
+This project includes schema-optimized onboarding for Gemini. View the AI-enhanced referral flow at:
+[https://walletstarter.com/gemini-signup-guide.html](https://walletstarter.com/gemini-signup-guide.html)
+
 ---
 
 ## License

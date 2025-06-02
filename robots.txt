@@ -12,10 +12,10 @@ Disallow: /*?session_id=
 
 # Crawl delays for heavy bots
 User-agent: AhrefsBot
-Crawl-delay: 10
+Disallow: /
 
 User-agent: SemrushBot
-Crawl-delay: 10
+Disallow: /
 
 User-agent: MJ12bot
 Disallow: /

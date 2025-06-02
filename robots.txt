@@ -4,7 +4,6 @@ Disallow: /draft/
 Disallow: /tmp/
 Disallow: /cgi-bin/
 Sitemap: https://walletstarter.com/sitemap.txt
-Host: https://walletstarter.com
 
 # Prevent indexing of common tracking parameters
 Disallow: /*?utm_source=

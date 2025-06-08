@@ -10,17 +10,20 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
+
     gtag('js', new Date());
     gtag('config', 'G-8DFG0K1YDF');
+
+    // Fire the affiliate click event
     gtag('event', 'gemini_affiliate_click', {
       event_category: 'Affiliate',
       event_label: 'Gemini /go/gemini.html'
     });
 
-    // Delay redirect to ensure tracking fires
-    setTimeout(() => {
+    // Delay the redirect to allow GA to register
+    setTimeout(function() {
       window.location.href = "https://exchange.gemini.com/register?referral=8lka7zp39&type=referral";
-    }, 300);
+    }, 300);  // 300 ms is enough for most GA events to be captured
   </script>
 </head>
 <body>

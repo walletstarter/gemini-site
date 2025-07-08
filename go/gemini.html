@@ -9,27 +9,26 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DFG0K1YDF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+    function gtag() { dataLayer.push(arguments); }
 
     gtag('js', new Date());
     gtag('config', 'G-8DFG0K1YDF');
 
-    // Fire the affiliate click event
+    // Fire affiliate click event with beacon transport
     gtag('event', 'gemini_affiliate_click', {
       event_category: 'Affiliate',
-      event_label: 'Gemini /go/gemini.html'
+      event_label: 'Gemini /go/gemini.html',
+      transport_type: 'beacon'
     });
 
-    // Delay the redirect to allow GA to register
-    setTimeout(function() {
+    // Delay redirect to allow GA + tracking to register
+    setTimeout(() => {
       window.location.href = "https://gemini.sjv.io/c/6308328/845984/11829";
-    }, 100);  // 300 ms is enough for most GA events to be captured
+    }, 400);
   </script>
 </head>
 <body>
   <p>Redirecting you to Gemini... If you're not redirected, 
-    <a href="https://gemini.sjv.io/c/6308328/845984/11829">Click Here</a></p>
+    <a href="https://gemini.sjv.io/c/6308328/845984/11829">Click here</a>.</p>
 </body>
 </html>
-
-

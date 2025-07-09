@@ -8,21 +8,8 @@
   <link rel="canonical" href="https://walletstarter.com/go/gemini" />
   <title>Redirecting to Gemini</title>
   
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DFG0K1YDF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-
-    gtag('js', new Date());
-    gtag('config', 'G-8DFG0K1YDF');
-
-    // Fire affiliate click event with beacon transport
-    gtag('event', 'gemini_affiliate_click', {
-      event_category: 'Affiliate',
-      event_label: 'Gemini /go/gemini',
-      transport_type: 'beacon'
-    });
 
     // Delay redirect to allow GA + tracking to register
     setTimeout(() => {

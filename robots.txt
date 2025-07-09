@@ -22,6 +22,16 @@ Disallow: /
 User-agent: Baiduspider
 Disallow: /
 
+# Explicit allow for AI crawlers (LLM visibility)
+User-agent: GPTBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: CCBot
+Allow: /
+
 # Explicit allowance to major engines
 User-agent: Googlebot
 Allow: /

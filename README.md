@@ -65,8 +65,6 @@ Built by a crypto enthusiast exploring modern SEO and AI-driven site design.
 
 ## Testing
 
-This repository includes a simple pytest check that ensures every URL listed in `sitemap.txt` refers to a file that exists in the project. To run the test, install `pytest` and execute:
 
-```bash
-pytest
-```
+This repository includes a simple pytest check that ensures every URL listed in `sitemap.txt` refers to a file that exists in the project. To run the test, install `pytest` and execute:
+=======

@@ -62,3 +62,11 @@ MIT — feel free to fork, remix, or strip it down for your own use.
 
 [walletstarter.com](https://walletstarter.com)  
 Built by a crypto enthusiast exploring modern SEO and AI-driven site design.
+
+## Testing
+
+This repository includes pytest checks that ensure every URL listed in `sitemap.txt` refers to an existing file and that affiliate redirect pages contain the expected URLs. To run the tests, install `pytest` and execute:
+
+```bash
+pytest
+```

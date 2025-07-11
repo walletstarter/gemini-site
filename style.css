@@ -9,6 +9,7 @@ body {
 
 header {
   padding: 2rem 1rem 1rem;
+  text-align: center;
 }
 
 h1 {
@@ -22,6 +23,13 @@ p {
   color: #cdd3d5;
   margin: 0 auto 1.25rem;
   max-width: 720px;
+  text-align: left;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .hero {
@@ -97,6 +105,31 @@ th {
 .cta-ai:hover {
   background: #66fcf1;
   color: #0f1116;
+}
+
+.cta {
+  width: 100%;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.cta a {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: #66fcf1;
+  color: #0f1116;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.cta a:hover {
+  background: #4ae8db;
 }
 
 footer {

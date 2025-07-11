@@ -3,7 +3,7 @@ Allow: /
 Disallow: /draft/
 Disallow: /tmp/
 Disallow: /cgi-bin/
-Sitemap: https://walletstarter.com/sitemap.txt
+Sitemap: https://walletstarter.com/sitemap.xml
 
 
 # Crawl delays for heavy bots

@@ -1,0 +1,20 @@
+{
+  "fid": 0,
+  "username": "walletstarter",
+  "verifications": {
+    "github": "walletstarter",
+    "ens": "walletstarter.eth"
+  },
+  "claims": [
+    {
+      "type": "dns",
+      "value": "walletstarter.com"
+    },
+    {
+      "type": "wallet",
+      "address": "0x0000000000000000000000000000000000000000",
+      "chainId": 1
+    }
+  ],
+  "updatedAt": "2025-07-12T12:00:00Z"
+}

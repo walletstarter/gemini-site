@@ -2,27 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="nofollow">
-  <meta property="og:url" content="https://walletstarter.com/go/gemini">
+  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="https://walletstarter.com/go/gemini">
   <link rel="canonical" href="https://walletstarter.com/" />
   <title>Redirecting to Gemini</title>
 
   <script>
-    window.dataLayer = window.dataLayer || [];
+    // Get subId from URL if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const subId = urlParams.get('subId') || 'anon';
 
-    // Fire Impact tracking pixel manually
-    new Image().src = "https://gemini.sjv.io/display-logo-via-campaign/11829.gif";
+    // Gemini affiliate tracking link via Impact
+    const trackingUrl = `https://gemini.sjv.io/c/6308328/845984/11829?subId=${subId}`;
 
-    // Delayed redirect
+    // Fire tracking pixel using Image() to trigger Impact click
+    const img = new Image();
+    img.src = trackingUrl;
+
+    // Delay redirect slightly to ensure click is recorded
     setTimeout(() => {
-      window.location.href = "https://gemini.sjv.io/c/6308328/845984/11829";
-    }, 350);
+      window.location.href = trackingUrl;
+    }, 350); // You can increase this if needed
   </script>
 </head>
 <body>
-  <p>Redirecting you to <strong>Gemini Exchange</strong>...<br>
-    If not redirected, <a href="https://gemini.sjv.io/c/6308328/845984/11829">click here</a>.
+  <p>
+    Redirecting you to <strong>Gemini Exchange</strong>...<br>
+    If you are not redirected automatically, 
+    <a id="manual-link" href="#">click here</a>.
   </p>
+
+  <script>
+    // Update the fallback link for manual click-through
+    document.getElementById('manual-link').href = trackingUrl;
+  </script>
 </body>
 </html>

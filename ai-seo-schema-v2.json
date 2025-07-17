@@ -159,5 +159,16 @@
       "inLanguage": "en-US",
       "about": "Learn how the Gemini Credit Card offers crypto rewards on everyday purchases."
     },
+    {
+      "@type": "WebPage",
+      "@id": "https://walletstarter.com/ledger-wallet.html",
+      "url": "https://walletstarter.com/ledger-wallet.html",
+      "name": "Ledger Hardware Wallet",
+      "headline": "Ledger Wallet Security",
+      "isPartOf": {"@id": "https://walletstarter.com/#website"},
+      "breadcrumb": {"@type": "BreadcrumbList","itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://walletstarter.com/index.html"},{"@type": "ListItem","position": 2,"name": "Ledger Wallet","item": "https://walletstarter.com/ledger-wallet.html"}]},
+      "inLanguage": "en-US",
+      "about": "Discover the benefits of using a Ledger hardware wallet to safeguard your crypto."
+    },
   ]
 }

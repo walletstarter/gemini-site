@@ -13,3 +13,4 @@ https://walletstarter.com/ai-index.json
 https://walletstarter.com/gemini-fee-schedule.html
 https://walletstarter.com/crypto-dashboard-guide.html
 https://walletstarter.com/gemini-credit-card.html
+https://walletstarter.com/ledger-wallet.html

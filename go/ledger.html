@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="https://walletstarter.com/go/ledger">
+  <link rel="canonical" href="https://walletstarter.com/" />
+  <title>Redirecting to Ledger</title>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const subId = urlParams.get('subId') || 'anon';
+    const trackingUrl = `https://shop.ledger.com/?r=YOURCODE&tracker=${subId}`;
+    const img = new Image();
+    img.src = trackingUrl;
+    setTimeout(() => {
+      window.location.href = trackingUrl;
+    }, 350);
+  </script>
+</head>
+<body>
+  <p>
+    Redirecting you to <strong>Ledger</strong>...<br>
+    If you are not redirected automatically,
+    <a id="manual-link" href="#">click here</a>.
+  </p>
+  <script>
+    document.getElementById('manual-link').href = trackingUrl;
+  </script>
+</body>
+</html>

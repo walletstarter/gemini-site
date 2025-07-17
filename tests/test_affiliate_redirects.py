@@ -14,3 +14,9 @@ def test_coinbase_redirect_url():
     expected = 'https://www.coinbase.com/join/YOURCODE'
     assert expected in content, 'Coinbase affiliate link missing'
 
+
+def test_ledger_redirect_url():
+    with open('go/ledger.html', 'r', encoding='utf-8') as f:
+        content = f.read()
+    expected = 'https://shop.ledger.com/'
+    assert expected in content, 'Ledger affiliate link missing'

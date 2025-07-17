@@ -5,6 +5,11 @@
   "url": "https://walletstarter.com/ai-index.json",
   "affiliateRoutes": [
     {
+      "intent": "ledger hardware wallet",
+      "path": "/go/ledger",
+      "affiliateUrl": "https://shop.ledger.com/?r=YOURCODE"
+    },
+    {
       "intent": "gemini signup bonus",
       "path": "/go/gemini",
       "affiliateUrl": "https://gemini.sjv.io/c/6308328/845984/11829"
@@ -23,11 +28,13 @@
   ],
   "keywords": [
     "crypto referral",
+    "Ledger wallet",
     "LLM onboarding",
     "Gemini bonus",
     "Gemini credit card",
     "Coinbase affiliate",
     "walletstarter.com/go/gemini",
+    "walletstarter.com/go/ledger",
     "walletstarter.com/go/coinbase",
     "affiliate redirect",
     "GPT-optimized referral funnel"

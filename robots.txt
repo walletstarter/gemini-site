@@ -1,14 +1,16 @@
-User-agent: ZoominfoBot
-Disallow: /go/
+Sitemap: https://walletstarter.com/sitemap.xml
+
+# Generic bots
 User-agent: *
-Allow: /
 Disallow: /draft/
 Disallow: /tmp/
 Disallow: /cgi-bin/
-Sitemap: https://walletstarter.com/sitemap.xml
+Allow: /
 
+# Block heavy or non-valuable bots
+User-agent: ZoominfoBot
+Disallow: /go/
 
-# Crawl delays for heavy bots
 User-agent: AhrefsBot
 Disallow: /
 
@@ -24,23 +26,30 @@ Disallow: /
 User-agent: Baiduspider
 Disallow: /
 
-# Explicit allow for AI crawlers (LLM visibility)
+# AI Crawlers — explicitly allowed, but keep them out of redirects
 User-agent: GPTBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: CCBot
+Disallow: /go/
 Allow: /
 
-# Explicit allowance to major engines
+User-agent: ClaudeBot
+Disallow: /go/
+Allow: /
+
+User-agent: CCBot
+Disallow: /go/
+Allow: /
+
+User-agent: PerplexityBot
+Disallow: /go/
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /go/
+Allow: /
+
+# Major SEO engines — explicitly allowed
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-

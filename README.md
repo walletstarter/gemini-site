@@ -70,3 +70,5 @@ This repository includes pytest checks that ensure every URL listed in `sitemap.
 ```bash
 pytest
 ```
+
+An optional `scripts/check_redirects.py` script performs live validation of our `/go/` redirect URLs. Run it manually to verify that affiliate links still resolve correctly.

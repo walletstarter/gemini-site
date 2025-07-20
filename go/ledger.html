@@ -9,21 +9,28 @@
   <link rel="canonical" href="https://walletstarter.com/" />
   <title>Redirecting to Ledger</title>
 
-  <meta http-equiv="refresh" content="5;url=https://shop.ledger.com/?r=26b1472f5bc4" />
-
   <script>
+    // Grab tracker ID or fallback to 'anon'
     const urlParams = new URLSearchParams(window.location.search);
     const subId = urlParams.get('subId') || 'anon';
+
+    // Build affiliate tracking URL
     const trackingUrl = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${subId}`;
-    
+
+    // Fire tracking pixel
     const img = new Image();
     img.src = trackingUrl;
 
+    // Delay redirect to ensure Impact fires
     setTimeout(() => {
       window.location.href = trackingUrl;
-    }, 500); // Slightly longer to ensure pixel fires
+    }, 500);
+
+    // Make available globally
+    window.trackingUrl = trackingUrl;
   </script>
 </head>
+
 <body style="font-family: sans-serif; text-align: center; padding: 2rem; background: #0e1013; color: #fff;">
   <h1>Launching Ledger...</h1>
   <p>
@@ -38,7 +45,8 @@
   </noscript>
 
   <script>
-    document.getElementById('manual-link').href = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${subId}`;
+    // Set the manual fallback link
+    document.getElementById('manual-link').href = window.trackingUrl;
   </script>
 </body>
 </html>

@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:url" content="https://walletstarter.com/go/ledger">
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="origin" />
+  <meta property="og:url" content="https://walletstarter.com/go/ledger" />
   <link rel="canonical" href="https://walletstarter.com/" />
   <title>Redirecting to Ledger</title>
+
+  <meta http-equiv="refresh" content="5;url=https://shop.ledger.com/?r=26b1472f5bc4" />
+
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const subId = urlParams.get('subId') || 'anon';
     const trackingUrl = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${subId}`;
+    
     const img = new Image();
     img.src = trackingUrl;
+
     setTimeout(() => {
       window.location.href = trackingUrl;
-    }, 350);
+    }, 500); // Slightly longer to ensure pixel fires
   </script>
 </head>
-<body>
+<body style="font-family: sans-serif; text-align: center; padding: 2rem; background: #0e1013; color: #fff;">
+  <h1>Launching Ledger...</h1>
   <p>
-    Redirecting you to <strong>Ledger</strong>...<br>
-    If you are not redirected automatically,
+    You're being redirected to <strong>Ledger Wallet</strong>.<br>
+    If it doesn't happen automatically,
     <a id="manual-link" href="#">click here</a>.
   </p>
+
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://shop.ledger.com/?r=26b1472f5bc4">
+    <p><a href="https://shop.ledger.com/?r=26b1472f5bc4">Click here</a> if you're not redirected.</p>
+  </noscript>
+
   <script>
-    document.getElementById('manual-link').href = trackingUrl;
+    document.getElementById('manual-link').href = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${subId}`;
   </script>
 </body>
 </html>

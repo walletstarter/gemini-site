@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:url" content="https://walletstarter.com/go/gemini">
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:url" content="https://walletstarter.com/go/gemini" />
   <link rel="canonical" href="https://walletstarter.com/" />
   <title>Redirecting to Gemini</title>
 
+  <!-- Security / SEO headers -->
+  <meta http-equiv="refresh" content="5;url=https://gemini.sjv.io/c/6308328/845984/11829" />
+  <meta http-equiv="X-Robots-Tag" content="noindex, nofollow" />
+  <meta name="referrer" content="origin" />
+  
   <script>
-    // Get subId from URL if present
+    // Parse subId from URL if present
     const urlParams = new URLSearchParams(window.location.search);
     const subId = urlParams.get('subId') || 'anon';
 
-    // Gemini affiliate tracking link via Impact
     const trackingUrl = `https://gemini.sjv.io/c/6308328/845984/11829?subId=${subId}`;
 
-    // Fire tracking pixel using Image() to trigger Impact click
+    // Fire Impact tracking click using an invisible pixel
     const img = new Image();
     img.src = trackingUrl;
 
-    // Delay redirect slightly to ensure click is recorded
+    // Wait before redirect to ensure pixel fires
     setTimeout(() => {
       window.location.href = trackingUrl;
-    }, 350); // You can increase this if needed
+    }, 500);  // 350 is OK, 500 is safer
   </script>
 </head>
-<body>
+<body style="font-family: sans-serif; padding: 2rem; text-align: center; background-color: #0e1013; color: #fff;">
+  <h1>Launching Gemini...</h1>
   <p>
-    Redirecting you to <strong>Gemini Exchange</strong>...<br>
-    If you are not redirected automatically, 
-    <a id="manual-link" href="#">click here</a>.
+    You're being securely redirected to <strong>Gemini Exchange</strong>.<br />
+    This may take a moment. If it doesn't, <a id="manual-link" href="#">click here</a>.
   </p>
 
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://gemini.sjv.io/c/6308328/845984/11829">
+    <p><a href="https://gemini.sjv.io/c/6308328/845984/11829">Click here to go manually</a></p>
+  </noscript>
+
   <script>
-    // Update the fallback link for manual click-through
     document.getElementById('manual-link').href = trackingUrl;
   </script>
 </body>

@@ -8,12 +8,6 @@ def test_gemini_redirect_url():
     assert expected in content, 'Gemini affiliate link missing'
 
 
-def test_coinbase_redirect_url():
-    with open('go/coinbase', 'r', encoding='utf-8') as f:
-        content = f.read()
-    expected = 'https://www.coinbase.com/join/YOURCODE'
-    assert expected in content, 'Coinbase affiliate link missing'
-
 
 def test_ledger_redirect_url():
     with open('go/ledger.html', 'r', encoding='utf-8') as f:

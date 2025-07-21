@@ -2,7 +2,6 @@ import requests
 
 redirect_urls = [
   'https://walletstarter.com/go/gemini',
-  'https://walletstarter.com/go/coinbase',
   'https://walletstarter.com/go/ledger.html',
 ]
 

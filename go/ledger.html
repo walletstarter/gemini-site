@@ -10,23 +10,26 @@
   <title>Redirecting to Ledger</title>
 
   <script>
-    // Grab tracker ID or fallback to 'anon'
-    const urlParams = new URLSearchParams(window.location.search);
-    const subId = urlParams.get('subId') || 'anon';
+    const params = new URLSearchParams(window.location.search);
+    const subId = params.get('subId') || 'anon';
+    const force = params.get('force') === '1';
 
-    // Build affiliate tracking URL
-    const trackingUrl = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${subId}`;
+    // Ledger affiliate link with tracker ID
+    const trackingUrl = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${encodeURIComponent(subId)}`;
 
-    // Fire tracking pixel
+    // Trigger pixel (does not register as true click on Ledger, but triggers the GET)
     const img = new Image();
     img.src = trackingUrl;
 
-    // Delay redirect to ensure Impact fires
-    setTimeout(() => {
-      window.location.href = trackingUrl;
-    }, 500);
+    // Choose redirect method
+    if (force) {
+      window.location.replace(trackingUrl);
+    } else {
+      setTimeout(() => {
+        window.location.href = trackingUrl;
+      }, 500);
+    }
 
-    // Make available globally
     window.trackingUrl = trackingUrl;
   </script>
 </head>
@@ -35,7 +38,7 @@
   <h1>Launching Ledger...</h1>
   <p>
     You're being redirected to <strong>Ledger Wallet</strong>.<br>
-    If it doesn't happen automatically,
+    If you aren't redirected,
     <a id="manual-link" href="#">click here</a>.
   </p>
 
@@ -45,7 +48,7 @@
   </noscript>
 
   <script>
-    // Set the manual fallback link
+    // Assign fallback manually
     document.getElementById('manual-link').href = window.trackingUrl;
   </script>
 </body>

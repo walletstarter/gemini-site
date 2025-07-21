@@ -9,23 +9,24 @@
   <title>Redirecting to Gemini</title>
 
   <script>
-    // Extract subId from URL query if present
     const urlParams = new URLSearchParams(window.location.search);
     const subId = urlParams.get('subId') || 'anon';
+    const force = urlParams.get('force') === '1';
+    const trackingUrl = `https://gemini.sjv.io/c/6308328/845984/11829?subId=${encodeURIComponent(subId)}`;
 
-    // Define full Impact affiliate tracking link
-    const trackingUrl = `https://gemini.sjv.io/c/6308328/845984/11829?subId=${subId}`;
+    if (force) {
+      // Force mode: immediate redirect, no JS wait
+      window.location.replace(trackingUrl);
+    } else {
+      // Normal mode: fire tracking pixel, delay, then redirect
+      const img = new Image();
+      img.src = trackingUrl;
 
-    // Fire tracking pixel first
-    const img = new Image();
-    img.src = trackingUrl;
+      setTimeout(() => {
+        window.location.href = trackingUrl;
+      }, 500); // give time for Zaraz, GTM, etc.
+    }
 
-    // After slight delay, redirect the user
-    setTimeout(() => {
-      window.location.href = trackingUrl;
-    }, 500);
-
-    // Make trackingUrl available to rest of page
     window.trackingUrl = trackingUrl;
   </script>
 </head>
@@ -37,7 +38,6 @@
   </p>
 
   <script>
-    // Assign manual fallback link now that trackingUrl is defined
     document.getElementById('manual-link').href = window.trackingUrl;
   </script>
 </body>

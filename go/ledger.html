@@ -8,7 +8,26 @@
   <meta property="og:url" content="https://walletstarter.com/go/ledger" />
   <link rel="canonical" href="https://walletstarter.com/" />
   <title>Redirecting to Ledger</title>
-
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://walletstarter.com/go/ledger",
+      "name": "Ledger Redirect",
+      "description": "This page redirects to our Ledger affiliate link.",
+      "isPartOf": { "@id": "https://walletstarter.com/#website" }
+    },
+    {
+      "@type": "AffiliateLink",
+      "name": "Ledger Affiliate Link",
+      "url": "https://shop.ledger.com/?r=26b1472f5bc4",
+      "merchant": "Ledger"
+    }
+  ]
+}
+  </script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const subId = params.get('subId') || 'anon';

@@ -179,3 +179,20 @@ ul, ol {
   text-align: center;
 }
 
+
+.video-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.video-row iframe,
+.video-row video {
+  flex: 1 1 45%;
+  max-width: 480px;
+  width: 100%;
+  height: 270px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}

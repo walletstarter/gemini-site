@@ -36,8 +36,6 @@
   <meta name="twitter:title" content="WalletStarter – Compare Crypto Signup Bonuses" />
   <meta name="twitter:description" content="Find the best crypto signup bonus. Gemini, Binance, and more." />
   <meta name="twitter:image" content="https://walletstarter.com/og-preview.png" />
-
-  
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,17 +50,26 @@
       "@type": "WebSite",
       "@id": "https://walletstarter.com/#website",
       "url": "https://walletstarter.com/",
-      "name": "WalletStarter – Learn Digital Wallet Basics",
-      "description": "Educational guides and affiliate links for crypto newcomers.",
+      "name": "WalletStarter — Launch Your Crypto Journey",
       "publisher": { "@id": "https://walletstarter.com/#org" },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://walletstarter.com/?q={search_term}",
-        "query-input": "required name=search_term"
+        "target": "https://walletstarter.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
     },
     {
+      "@type": "WebPage",
+      "@id": "https://walletstarter.com/#webpage",
+      "url": "https://walletstarter.com/index.html",
+      "name": "WalletStarter — Launch Your Crypto Journey",
+      "isPartOf": { "@id": "https://walletstarter.com/#website" },
+      "about": { "@id": "https://walletstarter.com/#org" },
+      "description": "WalletStarter is your fast-start crypto guide for Gemini. Compare exchanges, explore fee breakdowns, and get your Gemini signup bonus in minutes."
+    },
+    {
       "@type": "FAQPage",
+      "@id": "https://walletstarter.com/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -92,7 +99,8 @@
     },
     {
       "@type": "ItemList",
-      "name": "WalletStarter Quick Steps",
+      "@id": "https://walletstarter.com/#onboarding",
+      "name": "Wallet Onboarding Steps",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Compare exchanges" },
         { "@type": "ListItem", "position": 2, "name": "Follow our signup guides" },
@@ -102,6 +110,7 @@
     },
     {
       "@type": "SoftwareApplication",
+      "@id": "https://walletstarter.com/#api",
       "name": "WalletStarter API",
       "operatingSystem": "All",
       "applicationCategory": "FinTech",
@@ -109,21 +118,44 @@
     },
     {
       "@type": "AffiliateLink",
+      "@id": "https://walletstarter.com/go/gemini",
       "name": "Gemini Referral",
       "url": "https://walletstarter.com/go/gemini",
       "merchant": "Gemini"
     },
     {
       "@type": "AffiliateLink",
+      "@id": "https://walletstarter.com/go/ledger",
       "name": "Ledger Referral",
       "url": "https://walletstarter.com/go/ledger",
       "merchant": "Ledger"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://walletstarter.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://walletstarter.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Start", "item": "https://walletstarter.com/#start" },
+        { "@type": "ListItem", "position": 3, "name": "Exchange Setup", "item": "https://walletstarter.com/index.html" }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://walletstarter.com/#ledger-nano-x",
+      "name": "Ledger Nano X",
+      "image": "https://walletstarter.com/img/hard-wallet-animation.gif.gif",
+      "description": "Bluetooth-enabled hardware wallet for securing crypto.",
+      "brand": { "@type": "Brand", "name": "Ledger" },
+      "review": {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "author": { "@type": "Person", "name": "WalletStarter Staff" },
+        "reviewBody": "Our team finds the Ledger Nano X easy to use and very secure."
+      }
     }
   ]
 }
 </script>
-
-
 
   <!-- Optional JS (deferred) -->
   <meta name='impact-site-verification' value='06a1464d-92db-43ca-8557-8b2420c45481'>

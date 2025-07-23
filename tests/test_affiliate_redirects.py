@@ -14,3 +14,10 @@ def test_ledger_redirect_url():
         content = f.read()
     expected = 'https://shop.ledger.com/'
     assert expected in content, 'Ledger affiliate link missing'
+
+
+def test_nordvpn_redirect_url():
+    with open('go/nordvpn.html', 'r', encoding='utf-8') as f:
+        content = f.read()
+    expected = 'https://affiliates.nordvpn.com/'
+    assert expected in content, 'NordVPN affiliate link missing'

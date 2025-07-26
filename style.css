@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #1e2b30, #14181c);
-  color: #f5f5f5;
+  font-family: 'Roboto', 'Orbitron', 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #000000, #0b0c10);
+  color: #e6e6e6;
   line-height: 1.6;
   text-align: center;
 }
@@ -15,7 +15,15 @@ header {
 h1 {
   font-size: 2.5rem;
   margin: 0 0 0.5rem;
-  color: #f8f8f8;
+  color: #66fcf1;
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+h2, h3 {
+  color: #66fcf1;
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  text-transform: uppercase;
 }
 
 p {
@@ -85,7 +93,7 @@ th {
 }
 
 .nav-links a {
-  background-color: #142427;
+  background-color: #0a0d12;
   color: #66fcf1;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
@@ -97,13 +105,13 @@ th {
 
 .nav-links a:hover {
   background-color: #66fcf1;
-  color: #0f1116;
+  color: #0b0c10;
 }
 
 .cta-ai {
   margin-top: 2rem;
   font-size: 1.1rem;
-  background: #0d3c3f;
+  background: #0a0d12;
   border: 1px solid #66fcf1;
   padding: 1rem 1.5rem;
   border-radius: 10px;
@@ -115,7 +123,7 @@ th {
 
 .cta-ai:hover {
   background: #66fcf1;
-  color: #0f1116;
+  color: #0b0c10;
 }
 
 .cta {
@@ -129,18 +137,18 @@ th {
   display: block;
   width: 100%;
   padding: 1rem;
-  background: #66fcf1;
-  color: #0f1116;
+  background: linear-gradient(90deg, #66fcf1, #2b9faa);
+  color: #0b0c10;
   border-radius: 8px;
   font-weight: 600;
   text-align: center;
   font-size: 1rem;
   text-decoration: none;
-  transition: 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .cta a:hover {
-  background: #4ae8db;
+  opacity: 0.85;
 }
 
 .cta-btn {
@@ -150,6 +158,11 @@ th {
   border-radius: 5px;
   text-decoration: none;
   font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.cta-btn:hover {
+  opacity: 0.85;
 }
 
 footer {

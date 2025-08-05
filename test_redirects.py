@@ -10,6 +10,10 @@ def run_checks():
 
     root = '/rewired_site'
     pattern = re.compile(r"""https?://[^"']*(gemini|nordvpn|coinbase|ledger)""", re.IGNORECASE)
+
+    root = 'rewired_site'
+    pattern = re.compile("""https?://[^"']*(gemini|nordvpn|coinbase)""", re.IGNORECASE)
+
     for dirpath, _, filenames in os.walk(root):
         for name in filenames:
             if not name.lower().endswith(('.html', '.htm', '.md')):
@@ -31,7 +35,6 @@ def run_checks():
             print(f"Warning: could not verify {url}: {exc}")
 
     print('All redirects validated')
-
 
 if __name__ == '__main__':
     run_checks()

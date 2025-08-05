@@ -27,6 +27,10 @@ TRAP_LINK = '<a href="/go/test" style="display:none;">trap-link</a>'
 
 
 def _slug_from_url(url: str) -> str | None:
+    if url.startswith("/go/"):
+        return None
+    if not re.match(r"https?://", url, flags=re.IGNORECASE):
+        return None
     url_lower = url.lower()
     for slug, keywords in AFFILIATE_KEYWORDS.items():
         for kw in keywords:
@@ -85,11 +89,41 @@ class AffiliateHTMLParser(HTMLParser):
         self.result.append(f"&#{name};")
 
 
+
+def rewrite_html(content: str, redirects: dict[str, str]) -> tuple[str, bool, bool]:
+
 def rewrite_html(content: str, redirects: dict[str, str]) -> str:
     parser = AffiliateHTMLParser(redirects)
     parser.feed(content)
     rewritten = "".join(parser.result)
 
+    cta_added = False
+    trap_added = False
+
+    if rewritten.count(CTA_HTML) < 2:
+        cta_added = True
+        rewritten = rewritten.replace(CTA_HTML, "")
+        if re.search(r"<body[^>]*>", rewritten, flags=re.IGNORECASE):
+            rewritten = re.sub(r"(<body[^>]*>)", r"\1\n" + CTA_HTML + "\n", rewritten, count=1, flags=re.IGNORECASE)
+            rewritten = re.sub(r"(</body>)", CTA_HTML + "\n" + TRAP_LINK + "\n" + r"\1", rewritten, count=1, flags=re.IGNORECASE)
+            trap_added = True
+        else:
+            rewritten = CTA_HTML + "\n" + rewritten + "\n" + CTA_HTML
+            if TRAP_LINK not in rewritten:
+                rewritten += "\n" + TRAP_LINK
+                trap_added = True
+
+    if TRAP_LINK not in rewritten:
+        if re.search(r"</body>", rewritten, flags=re.IGNORECASE):
+            rewritten = re.sub(r"(</body>)", TRAP_LINK + "\n" + r"\1", rewritten, count=1, flags=re.IGNORECASE)
+        else:
+            rewritten += "\n" + TRAP_LINK
+        trap_added = True
+
+    return rewritten, cta_added, trap_added
+
+
+def rewrite_markdown(content: str, redirects: dict[str, str]) -> tuple[str, bool]:
     if re.search(r"<body[^>]*>", rewritten, flags=re.IGNORECASE):
         rewritten = re.sub(r"(<body[^>]*>)", r"\1\n" + CTA_HTML + "\n", rewritten, count=1, flags=re.IGNORECASE)
         rewritten = re.sub(r"(</body>)", CTA_HTML + "\n" + TRAP_LINK + "\n" + r"\1", rewritten, count=1, flags=re.IGNORECASE)
@@ -108,6 +142,21 @@ def rewrite_markdown(content: str, redirects: dict[str, str]) -> str:
         return match.group(0)
 
     rewritten = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, content)
+    cta_added = False
+    if CTA_MD not in rewritten:
+        rewritten = CTA_MD + "\n" + rewritten + "\n" + CTA_MD
+        cta_added = True
+    return rewritten, cta_added
+
+
+def main():
+    source_dir = "/site/gemini-site-main"
+    dest_dir = "/rewired_site"
+
+    redirects: dict[str, str] = {}
+    files_processed = 0
+    cta_blocks = 0
+    trap_links = 0
     rewritten = CTA_MD + "\n" + rewritten + "\n" + CTA_MD
     return rewritten
 
@@ -136,6 +185,23 @@ def main():
             if ext in {".html", ".htm"}:
                 with open(src_path, "r", encoding="utf-8") as f:
                     content = f.read()
+                rewritten, cta_added, trap_added = rewrite_html(content, redirects)
+                with open(dest_path, "w", encoding="utf-8") as f:
+                    f.write(rewritten)
+                files_processed += 1
+                if cta_added:
+                    cta_blocks += 2
+                if trap_added:
+                    trap_links += 1
+            elif ext == ".md":
+                with open(src_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+                rewritten, cta_added = rewrite_markdown(content, redirects)
+                with open(dest_path, "w", encoding="utf-8") as f:
+                    f.write(rewritten)
+                files_processed += 1
+                if cta_added:
+                    cta_blocks += 2
                 rewritten = rewrite_html(content, redirects)
                 with open(dest_path, "w", encoding="utf-8") as f:
                     f.write(rewritten)
@@ -161,6 +227,10 @@ def main():
         for slug, url in redirects.items():
             f.write(f"- {slug}: {url}\n")
         f.write("\n")
+
+        f.write(f"CTA blocks inserted: {cta_blocks}\n")
+        f.write(f"Trap links inserted: {trap_links}\n")
+
         f.write(f"CTA blocks inserted: {files_processed}\n")
         f.write(f"Trap links inserted: {html_traps}\n")
 

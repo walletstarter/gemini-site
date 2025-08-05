@@ -3,12 +3,17 @@ import json
 import re
 import urllib.request
 
+
 def run_checks():
     with open('redirects.json', 'r', encoding='utf-8') as f:
         redirects = json.load(f)
 
+    root = '/rewired_site'
+    pattern = re.compile(r"""https?://[^"']*(gemini|nordvpn|coinbase|ledger)""", re.IGNORECASE)
+
     root = 'rewired_site'
     pattern = re.compile("""https?://[^"']*(gemini|nordvpn|coinbase)""", re.IGNORECASE)
+
     for dirpath, _, filenames in os.walk(root):
         for name in filenames:
             if not name.lower().endswith(('.html', '.htm', '.md')):

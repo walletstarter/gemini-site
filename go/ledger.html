@@ -1,74 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="referrer" content="origin" />
-  <meta property="og:url" content="https://walletstarter.com/go/ledger" />
-  <link rel="canonical" href="https://walletstarter.com/" />
-  <title>Redirecting to Ledger</title>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://walletstarter.com/go/ledger",
-      "name": "Ledger Redirect",
-      "description": "This page redirects to our Ledger affiliate link.",
-      "isPartOf": { "@id": "https://walletstarter.com/#website" }
-    },
-    {
-      "@type": "AffiliateLink",
-      "name": "Ledger Affiliate Link",
-      "url": "https://shop.ledger.com/?r=26b1472f5bc4",
-      "merchant": "Ledger"
-    }
-  ]
-}
-  </script>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const subId = params.get('subId') || 'anon';
-    const force = params.get('force') === '1';
-
-    // Ledger affiliate link with tracker ID
-    const trackingUrl = `https://shop.ledger.com/?r=26b1472f5bc4&tracker=${encodeURIComponent(subId)}`;
-
-    // Trigger pixel (does not register as true click on Ledger, but triggers the GET)
-    const img = new Image();
-    img.src = trackingUrl;
-
-    // Choose redirect method
-    if (force) {
-      window.location.replace(trackingUrl);
-    } else {
-      setTimeout(() => {
-        window.location.href = trackingUrl;
-      }, 500);
-    }
-
-    window.trackingUrl = trackingUrl;
-  </script>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Redirecting to Ledger</title>
+<script>
+var p=location.search||'';
+var u='https://shop.ledger.com/?r=26b1472f5bc4'+p;
+location.replace(u);
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=https://shop.ledger.com/?r=26b1472f5bc4"></noscript>
 </head>
-
-<body style="font-family: sans-serif; text-align: center; padding: 2rem; background: #0e1013; color: #fff;">
-  <h1>Launching Ledger...</h1>
-  <p>
-    You're being redirected to <strong>Ledger Wallet</strong>.<br>
-    If you aren't redirected,
-    <a id="manual-link" href="#">click here</a>.
-  </p>
-
-  <noscript>
-    <meta http-equiv="refresh" content="0;url=https://shop.ledger.com/?r=26b1472f5bc4">
-    <p><a href="https://shop.ledger.com/?r=26b1472f5bc4">Click here</a> if you're not redirected.</p>
-  </noscript>
-
-  <script>
-    // Assign fallback manually
-    document.getElementById('manual-link').href = window.trackingUrl;
-  </script>
+<body>
+<p>Redirecting to Ledger... <a id="m" rel="sponsored noopener nofollow" referrerpolicy="origin-when-cross-origin">click here</a>.</p>
+<script>document.getElementById('m').href='https://shop.ledger.com/?r=26b1472f5bc4'+p;</script>
 </body>
 </html>

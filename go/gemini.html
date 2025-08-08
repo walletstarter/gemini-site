@@ -1,63 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:url" content="https://walletstarter.com/go/gemini">
-  <link rel="canonical" href="https://walletstarter.com/" />
-  <title>Redirecting to Gemini</title>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://walletstarter.com/go/gemini",
-      "name": "Gemini Redirect",
-      "description": "This page redirects to our Gemini affiliate link.",
-      "isPartOf": { "@id": "https://walletstarter.com/#website" }
-    },
-    {
-      "@type": "AffiliateLink",
-      "name": "Gemini Affiliate Link",
-      "url": "https://gemini.sjv.io/c/6308328/845984/11829",
-      "merchant": "Gemini"
-    }
-  ]
-}
-  </script>
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const subId = urlParams.get('subId') || 'anon';
-    const force = urlParams.get('force') === '1';
-    const trackingUrl = `https://gemini.sjv.io/c/6308328/845984/11829?subId=${encodeURIComponent(subId)}`;
-
-    if (force) {
-      // Force mode: immediate redirect, no JS wait
-      window.location.replace(trackingUrl);
-    } else {
-      // Normal mode: fire tracking pixel, delay, then redirect
-      const img = new Image();
-      img.src = trackingUrl;
-
-      setTimeout(() => {
-        window.location.href = trackingUrl;
-      }, 500); // give time for Zaraz, GTM, etc.
-    }
-
-    window.trackingUrl = trackingUrl;
-  </script>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Redirecting to Gemini</title>
+<script>
+var p=location.search||'';
+var u='https://gemini.sjv.io/c/6308328/845984/11829'+p;
+location.replace(u);
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=https://gemini.sjv.io/c/6308328/845984/11829"></noscript>
 </head>
 <body>
-  <p>
-    Redirecting you to <strong>Gemini Exchange</strong>...<br>
-    If you are not redirected automatically,
-    <a id="manual-link" href="#">click here</a>.
-  </p>
-
-  <script>
-    document.getElementById('manual-link').href = window.trackingUrl;
-  </script>
+<p>Redirecting to Gemini... <a id="m" rel="sponsored noopener nofollow" referrerpolicy="origin-when-cross-origin">click here</a>.</p>
+<script>document.getElementById('m').href='https://gemini.sjv.io/c/6308328/845984/11829'+p;</script>
 </body>
 </html>

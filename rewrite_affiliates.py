@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 
 AFFILIATE_KEYWORDS = {
     "gemini": ["gemini"],
-    "nordvpn": ["nordvpn"],
+    "nord": ["nordvpn"],
     "ledger": ["ledger"],
     "coinbase": ["coinbase"],
 }
@@ -14,13 +14,13 @@ AFFILIATE_KEYWORDS = {
 CTA_HTML = (
     '<div class="cta-block">\n'
     '  <p><a href="/go/gemini"><button>Start now with Gemini</button></a></p>\n'
-    '  <p><a href="/go/nordvpn"><button>Protect with NordVPN</button></a></p>\n'
+    '  <p><a href="/go/nord"><button>Protect with NordVPN</button></a></p>\n'
     '</div>'
 )
 
 CTA_MD = (
     "[Start with Gemini](/go/gemini)\n"
-    "[Secure with NordVPN](/go/nordvpn)"
+    "[Secure with NordVPN](/go/nord)"
 )
 
 TRAP_LINK = '<a href="/go/test" style="display:none;">trap-link</a>'

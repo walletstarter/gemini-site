@@ -23,6 +23,8 @@ The site is fully static and deployed via GitHub Pages. It is optimized for:
 - Clean internal linking and optimized URLs (e.g., `gemini-vs-binance.html`)
 - Human-readable `site-map.html` + machine `sitemap.txt` and `robots.txt`
 - Splitbee (optional) for privacy-conscious lightweight analytics (disabled by default)
+- **Affiliate CTA framework** with automatic link decoration and A/B testing
+- **Client-side metrics** logged to IndexedDB with exportable CSV dashboard
 
 ---
 
@@ -72,3 +74,35 @@ pytest
 ```
 
 An optional `scripts/check_redirects.py` script performs live validation of our `/go/` redirect URLs. Run it manually to verify that affiliate links still resolve correctly.
+
+## A/B Testing
+
+The `ab_ws` cookie controls which CTA variant loads.
+
+- Force variant A:
+
+  ```bash
+  document.cookie = 'ab_ws=A; Path=/';
+  ```
+
+- Force variant B:
+
+  ```bash
+  document.cookie = 'ab_ws=B; Path=/';
+  ```
+
+Reload the page after setting the cookie.
+
+## Metrics Dashboard
+
+Affiliate clicks are stored locally in IndexedDB (fallback to `localStorage`).
+
+- Visit `/dashboard/?dev=1` to view totals and export CSV.
+- Use the **Export CSV** button to download `ws_clicks_YYYYMMDD.csv`.
+
+## Verifying Click IDs
+
+Right-click any CTA (e.g., “Open Gemini”), copy the link address, and ensure the URL contains:
+
+- `subId=` and `clickref=` with the same generated click ID
+- Propagated `utm_*` params, `ref` host, and `page` path

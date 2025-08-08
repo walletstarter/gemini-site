@@ -14,7 +14,7 @@
   X-Robots-Tag: noindex, nofollow
   Referrer-Policy: no-referrer
  
-/go/nordvpn*
+/go/nord*
   Speculation-Rules: none
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex, nofollow

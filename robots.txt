@@ -27,25 +27,20 @@ Disallow: /
 User-agent: Baiduspider
 Disallow: /
 
-# AI Crawlers — explicitly allowed, but keep them out of redirects
+# AI Crawlers — explicitly allowed to see /go/
 User-agent: GPTBot
-Disallow: /go/
 Allow: /
 
 User-agent: ClaudeBot
-Disallow: /go/
 Allow: /
 
 User-agent: CCBot
-Disallow: /go/
 Allow: /
 
 User-agent: PerplexityBot
-Disallow: /go/
 Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /go/
 Allow: /
 
 # Major SEO engines — explicitly allowed

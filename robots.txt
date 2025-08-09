@@ -8,7 +8,7 @@ Disallow: /tmp/
 Disallow: /cgi-bin/
 Allow: /
 
-# Block heavy or non-valuable bots
+# Block heavy or non-valuable bots more bots
 User-agent: ZoominfoBot
 Disallow: /go/
 

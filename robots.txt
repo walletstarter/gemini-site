@@ -2,6 +2,7 @@ Sitemap: https://walletstarter.com/sitemap.xml
 
 # Generic bots
 User-agent: *
+Content-Usage: tdm=y
 Disallow: /draft/
 Disallow: /tmp/
 Disallow: /cgi-bin/

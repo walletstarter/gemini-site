@@ -1,0 +1,43 @@
+<section id="money-loop" class="promo-block" aria-label="Rewards animation">
+  <style>
+    #money-loop{display:grid;place-items:center;margin:2rem auto}
+    #money-loop figure{margin:0;text-align:center;max-width:480px}
+    #money-loop .frame{position:relative;aspect-ratio:1/1;width:min(90vw,480px)}
+    #money-loop video,#money-loop .poster{width:100%;height:100%;object-fit:contain}
+    #money-loop .poster{display:none}
+    #money-loop figcaption{font:500 .95rem/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#333;margin-top:.5rem}
+    #money-loop .disclaimer{font-size:.82rem;color:#6b7280}
+    #money-loop button{margin-top:.5rem;cursor:pointer;border:1px solid #d1d5db;padding:.4rem .7rem;border-radius:6px;background:#fff}
+    @media(prefers-reduced-motion:reduce){#money-loop video{display:none}#money-loop .poster{display:block}}
+  </style>
+  <figure>
+    <div class="frame">
+      <video id="money-video" autoplay muted loop playsinline preload="metadata" width="320" height="320" poster="/assets/joyful-money-loop-poster.jpg" aria-describedby="money-caption">
+        <source src="/assets/joyful-money-loop.webm" type="video/webm">
+        <source src="/assets/joyful-money-loop.mp4" type="video/mp4">
+        <img src="/assets/joyful-money-loop.gif" loading="lazy" width="320" height="320" alt="Looping 3D smiley bouncing as dollar bills drift down on a light gray background; playful reward motif.">
+      </video>
+      <img class="poster" src="/assets/joyful-money-loop-poster.jpg" width="320" height="320" alt="Smiley with falling banknotes — static poster">
+    </div>
+    <figcaption id="money-caption">Perks and partner offers can boost your wallet experience. Terms apply. <span class="disclaimer">WalletStarter may earn a commission from partner links.</span></figcaption>
+  </figure>
+  <button type="button" id="toggle-anim" aria-pressed="false" aria-controls="money-video">Pause animation</button>
+  <script>
+    (function(){const v=document.getElementById('money-video'),p=document.querySelector('#money-loop .poster'),b=document.getElementById('toggle-anim'),r=matchMedia('(prefers-reduced-motion: reduce)').matches;function pause(){v.pause();v.style.display='none';p.style.display='block';b.textContent='Play animation';b.setAttribute('aria-pressed','true')}function play(){p.style.display='none';v.style.display='block';v.play();b.textContent='Pause animation';b.setAttribute('aria-pressed','false')}r?pause():play();b.addEventListener('click',()=>v.paused?play():pause())})();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "name": "Joyful money loop animation",
+    "caption": "Looping 3D smiley with falling banknotes; rewards motif.",
+    "contentUrl": "https://walletstarter.com/assets/joyful-money-loop.gif",
+    "thumbnailUrl": "https://walletstarter.com/assets/joyful-money-loop-poster.jpg",
+    "uploadDate": "2025-08-13T00:00:00Z",
+    "width": 320,
+    "height": 320,
+    "encodingFormat": "image/gif",
+    "contentSize": "PLACEHOLDER"
+  }
+  </script>
+</section>

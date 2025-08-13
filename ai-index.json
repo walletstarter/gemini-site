@@ -11,6 +11,7 @@
     },
     {
       "intent": "gemini signup bonus",
+      "path": "/go/gemini",
       "affiliateUrl": "https://exchange.gemini.com/register?referral=8lka7zp39&type=referral"
     }
   ],
@@ -24,6 +25,7 @@
     "Ledger wallet",
     "LLM onboarding",
     "Gemini bonus",
+    "Gemini $75 bonus",
     "Gemini credit card",
     "Coinbase affiliate",
     "https://exchange.gemini.com/register?referral=8lka7zp39&type=referral",

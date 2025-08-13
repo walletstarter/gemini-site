@@ -7,8 +7,8 @@
 
   const config = {
     'walletstarter.com':{
-      bar:{text:'Learn crypto with Gemini and earn a bonus',btn:{A:'Open Gemini',B:'Claim Gemini Bonus'},aff:'gemini'},
-      footer:{text:{A:'Open Gemini – fast signup bonus',B:'Claim Gemini Bonus'},aff:'gemini'},
+      bar:{text:"Don't miss out on $75 in free crypto",btn:{A:'Sign Up for Gemini',B:'Claim $75 in Crypto'},aff:'gemini'},
+      footer:{text:{A:'Sign Up for Gemini',B:'Claim $75 in Crypto'},aff:'gemini'},
       card:{headline:'Ledger – take control of your crypto',bullets:['Secure offline storage','Easy backups','Supports 5,500+ coins'],btn:{A:'Get Ledger',B:'Shop Ledger Now'},aff:'ledger'},
       sidebar:{text:'Secure your coins offline',btn:{A:'Get Ledger',B:'Shop Ledger Now'},aff:'ledger'}
     },

@@ -5,6 +5,92 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tic-Tac-Toe QR — Support</title>
   <meta name="description" content="Scan a square to support the project. flownationfopreciated." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://walletstarter.com/#website",
+        "url": "https://walletstarter.com/",
+        "name": "WalletStarter",
+        "inLanguage": "en",
+        "isAccessibleForFree": true
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://walletstarter.com/#org",
+        "name": "WalletStarter Project",
+        "url": "https://walletstarter.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://walletstarter.com/img/logo.png"
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://walletstarter.com/#skeleton",
+        "url": "https://walletstarter.com/img/skeleton.gif",
+        "contentUrl": "https://walletstarter.com/img/skeleton.gif",
+        "name": "Dancing Skeleton Mascot",
+        "caption": "Support our project via the tic-tac-toe ETH QR board."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://walletstarter.com/#webpage",
+        "url": "https://walletstarter.com/",
+        "name": "Support — ETH Tic-Tac-Toe QR",
+        "isPartOf": { "@id": "https://walletstarter.com/#website" },
+        "primaryImageOfPage": { "@id": "https://walletstarter.com/#skeleton" },
+        "about": [
+          { "@type": "Thing", "name": "Ethereum donations" },
+          { "@type": "Thing", "name": "QR funding board" }
+        ],
+        "potentialAction": {
+          "@type": "DonateAction",
+          "name": "Support via Ethereum",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "ethereum:pay-0xYOUR_ETH_ADDRESS@1"
+          },
+          "recipient": { "@id": "https://walletstarter.com/#org" }
+        },
+        "dateModified": "2025-08-23",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://walletstarter.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I send Bitcoin to these QR codes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. These QR codes are Ethereum addresses only. Do not send BTC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when I fund a square?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your contribution fills a tile on the tic-tac-toe board and supports our project."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a minimum amount?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Any ETH amount helps. Gas fees apply."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
     :root{
       --bg:#0b0d10;

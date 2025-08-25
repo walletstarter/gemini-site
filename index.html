@@ -68,11 +68,11 @@
       padding:18px;
     }
 
-    .grid{
+    /* .grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(110px, 1fr));
       gap:10px; width:min(96vw, 720px); margin-inline:auto;
-    }
+    } */
     .cell{
       position:relative; aspect-ratio:1/1; border-radius:12px;
       border:1px solid var(--border); overflow:hidden;
@@ -92,38 +92,45 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { scrollbar-gutter: stable both-edges; }
 
-    .cell.ad{
-      display:block;
-      grid-column: 1 / -1;
+    /* stop forcing ads to full-width rows */
+    .cell.ad {
+      grid-column: auto;       /* was: 1 / -1 */
+      display:flex;            /* keep simple centering if you want */
+      justify-content:center;
+      align-items:center;
       aspect-ratio:auto;
-      overflow:visible;
+      padding:0;
       background:transparent;
       border:none;
       box-shadow:none;
-      padding:0;
     }
 
+    /* base grid: allows 1–2 columns on narrow screens */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:10px;
+      width:min(96vw, 1000px); /* lift the 720px cap so 3×300 can fit at desktop */
+      margin-inline:auto;
+    }
+
+    /* desktop: lock to 3 columns so all three ads sit on one row when space allows */
+    @media (min-width: 980px){
+      .grid{
+        width:min(96vw, 1100px);   /* roomy container */
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ad frame stays native size (no transforms) */
     .ad-slot{
-      width:300px;
-      height:250px;
-      margin:0 auto;   /* exact horizontal center */
-      padding:0;
+      width:300px; height:250px;
+      margin:0 auto;
       display:block;
-
-      outline:1px dashed #3a4458; /* visual frame, doesn’t add width */
-      border:none;
-      border-radius:10px;
-      background:#0f1420;
+      outline:1px dashed #3a4458; outline-offset:0; border:none;
+      border-radius:10px; background:#0f1420; padding:0;
     }
-
-    .ad-slot iframe{
-      display:block;
-      width:300px;
-      height:250px;
-      border:0;
-      margin:0;
-      padding:0;
-    }
+    .ad-slot iframe{ display:block; width:300px; height:250px; border:0; }
 
     .note{ margin-top:16px; color:#9ab; text-align:center; font-size:13.5px; }
 

@@ -15,9 +15,14 @@
       --muted:#9ab;
       --border:#1d232c;
       --radius:16px;
-      --adW:300px;
-      --adH:250px;
+      --adW:300px; /* ad width */
+      --adH:250px; /* ad height */
     }
+
+    /* deterministic sizing + stable centering */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scrollbar-gutter: stable both-edges; }
+
     html,body{height:100%}
     body{
       margin:0; color:var(--text);
@@ -68,11 +73,20 @@
       padding:18px;
     }
 
-    /* .grid{
+    /* responsive grid that supports 3× 300px ads on desktop */
+    .grid{
       display:grid;
-      grid-template-columns: repeat(3, minmax(110px, 1fr));
-      gap:10px; width:min(96vw, 720px); margin-inline:auto;
-    } */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:10px;
+      width:min(96vw, 1100px);
+      margin-inline:auto;
+    }
+    @media (min-width: 980px){
+      .grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     .cell{
       position:relative; aspect-ratio:1/1; border-radius:12px;
       border:1px solid var(--border); overflow:hidden;
@@ -87,15 +101,10 @@
     .qr{ width:86%; height:auto; image-rendering: crisp-edges; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
     .label{ position:absolute; bottom:6px; left:8px; font-size:12px; color:#9ab; background:rgba(0,0,0,.35); padding:2px 6px; border-radius:8px; border:1px solid rgba(255,255,255,.07); backdrop-filter: blur(3px); }
 
-      
-    /* pixel-true centering fix */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scrollbar-gutter: stable both-edges; }
-
-    /* stop forcing ads to full-width rows */
-    .cell.ad {
-      grid-column: auto;       /* was: 1 / -1 */
-      display:flex;            /* keep simple centering if you want */
+    /* ad cells: exact centering, no clipping, no transforms */
+    .cell.ad{
+      grid-column:auto;
+      display:flex;
       justify-content:center;
       align-items:center;
       aspect-ratio:auto;
@@ -103,46 +112,41 @@
       background:transparent;
       border:none;
       box-shadow:none;
+      overflow:visible; /* ensure no clipping of 300×250 */
     }
 
-    /* base grid: allows 1–2 columns on narrow screens */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap:10px;
-      width:min(96vw, 1000px); /* lift the 720px cap so 3×300 can fit at desktop */
-      margin-inline:auto;
-    }
-
-    /* desktop: lock to 3 columns so all three ads sit on one row when space allows */
-    @media (min-width: 980px){
-      .grid{
-        width:min(96vw, 1100px);   /* roomy container */
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    /* ad frame stays native size (no transforms) */
     .ad-slot{
-      width:300px; height:250px;
-      margin:0 auto;
+      width:var(--adW);
+      height:var(--adH);
+      margin:0 auto;      /* pixel-true center */
       display:block;
-      outline:1px dashed #3a4458; outline-offset:0; border:none;
-      border-radius:10px; background:#0f1420; padding:0;
+      padding:0;
+      border:none;        /* avoid border width altering centering */
+      outline:1px dashed #3a4458; /* visual frame without affecting size */
+      outline-offset:0;
+      border-radius:10px;
+      background:#0f1420;
     }
-    .ad-slot iframe{ display:block; width:300px; height:250px; border:0; }
+    .ad-slot iframe{
+      display:block;
+      width:300px;
+      height:250px;
+      border:0;
+      margin:0;
+      padding:0;
+    }
 
     .note{ margin-top:16px; color:#9ab; text-align:center; font-size:13.5px; }
 
-    /* mobile: keep ads full-width by stacking the grid */
+    /* mobile: stack gracefully */
     @media (max-width:520px){
       .grid{ grid-template-columns: 1fr; gap:8px }
       .qr{ width:90% }
-      .cell{ aspect-ratio:auto } /* keep QRs readable on small devices */
+      .cell{ aspect-ratio:auto }
     }
   </style>
 
-  <!-- JSON-LD (unchanged) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -216,19 +220,19 @@
         <!-- Row 2: A-Ads (cells 4–6) -->
         <div class="cell ad">
           <div class="ad-slot">
-            <iframe title="A-Ads slot 2407947" data-aa="2407947" src="//ad.a-ads.com/2407947/?size=300x250"></iframe>
+            <iframe title="A-Ads slot 2407947" data-aa="2407947" src="//ad.a-ads.com/2407947/?size=300x250" loading="eager"></iframe>
           </div>
         </div>
 
         <div class="cell ad">
           <div class="ad-slot">
-            <iframe title="A-Ads slot 2407948" data-aa="2407948" src="//ad.a-ads.com/2407948/?size=300x250"></iframe>
+            <iframe title="A-Ads slot 2407948" data-aa="2407948" src="//ad.a-ads.com/2407948/?size=300x250" loading="eager"></iframe>
           </div>
         </div>
 
         <div class="cell ad">
           <div class="ad-slot">
-            <iframe title="A-Ads slot 2407950" data-aa="2407950" src="//ad.a-ads.com/2407950/?size=300x250"></iframe>
+            <iframe title="A-Ads slot 2407950" data-aa="2407950" src="//ad.a-ads.com/2407950/?size=300x250" loading="eager"></iframe>
           </div>
         </div>
 

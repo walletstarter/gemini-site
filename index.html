@@ -15,8 +15,8 @@
       --muted:#9ab;
       --border:#1d232c;
       --radius:16px;
-      --adW:300px;  /* 250px if you switch to squares */
-      --adH:250px;  /* 250px if you switch to squares */
+      --adW:300px;
+      --adH:250px;
     }
     html,body{height:100%}
     body{
@@ -87,29 +87,44 @@
     .qr{ width:86%; height:auto; image-rendering: crisp-edges; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
     .label{ position:absolute; bottom:6px; left:8px; font-size:12px; color:#9ab; background:rgba(0,0,0,.35); padding:2px 6px; border-radius:8px; border:1px solid rgba(255,255,255,.07); backdrop-filter: blur(3px); }
 
-    /* Ad slot styling */
-    .ad-slot{
-      width:min(var(--adW), 94%);
-      height:var(--adH);
-      background:#0f1420;
-      border:1px dashed #3a4458; border-radius:10px;
-      display:flex; align-items:flex-start; justify-content:flex-start;
-      padding:6px; overflow:hidden;
-      color:#9fb1d1; font:600 13px/1.2 system-ui,-apple-system,Segoe UI,Roboto;
+    /* --- Verified-visible ad cells --- */
+    .cell.ad{
+      /* span across all three columns so the ad can be 300×250 without scaling */
+      grid-column: 1 / -1;
+      aspect-ratio:auto;
+      overflow:visible;
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      padding:0;
+      justify-content:center;
+      align-items:center;
     }
-    /* inner wrapper is what gets scaled; parent stays unscaled for measurement */
-    .ad-inner{
+    .ad-slot{
       width:var(--adW);
       height:var(--adH);
-      transform-origin: top left;
+      display:flex; align-items:center; justify-content:center;
+      /* optional frame; not required by networks */
+      background:#0f1420;
+      border:1px dashed #3a4458; border-radius:10px;
+      padding:0;
     }
-    .ad-slot small{ display:block; color:#7f90ab; font-weight:500; margin-top:6px; }
+    .ad-slot iframe{
+      display:block;
+      width:300px; height:250px; border:0; padding:0; margin:0;
+    }
 
     .note{ margin-top:16px; color:#9ab; text-align:center; font-size:13.5px; }
-    @media (max-width:520px){ .grid{ gap:8px } .qr{ width:90% } }
+
+    /* mobile: keep ads full-width by stacking the grid */
+    @media (max-width:520px){
+      .grid{ grid-template-columns: 1fr; gap:8px }
+      .qr{ width:90% }
+      .cell{ aspect-ratio:auto } /* keep QRs readable on small devices */
+    }
   </style>
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD (unchanged) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -181,34 +196,21 @@
         </a>
 
         <!-- Row 2: A-Ads (cells 4–6) -->
-        <div class="cell">
+        <div class="cell ad">
           <div class="ad-slot">
-            <div class="ad-inner">
-              <!-- REPLACE with the official A-Ads snippet -->
-              <iframe data-aa="2407947" src="//ad.a-ads.com/2407947/?size=300x250"
-                style="border:0;padding:0;width:300px;height:250px;overflow:hidden;display:block;"></iframe>
-            </div>
+            <iframe title="A-Ads slot 2407947" data-aa="2407947" src="//ad.a-ads.com/2407947/?size=300x250"></iframe>
           </div>
         </div>
 
-        <div class="cell">
+        <div class="cell ad">
           <div class="ad-slot">
-            <div class="ad-inner">
-              <!-- REPLACE with the official A-Ads snippet -->
-              <iframe data-aa="2407948" src="//ad.a-ads.com/2407948/?size=300x250"
-                style="border:0;padding:0;width:300px;height:250px;overflow:hidden;display:block;"></iframe>
-            </div>
+            <iframe title="A-Ads slot 2407948" data-aa="2407948" src="//ad.a-ads.com/2407948/?size=300x250"></iframe>
           </div>
         </div>
 
-        <div class="cell">
+        <div class="cell ad">
           <div class="ad-slot">
-            <div class="ad-inner">
-              <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-                <iframe data-aa='2407950' src='//ad.a-ads.com/2407950/?size=300x250'
-                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-              </div>
-            </div>
+            <iframe title="A-Ads slot 2407950" data-aa="2407950" src="//ad.a-ads.com/2407950/?size=300x250"></iframe>
           </div>
         </div>
 
@@ -228,44 +230,6 @@
     </section>
   </main>
 
-  <script>
-    // Responsive ads without compounding shrink on scroll/resize
-    (() => {
-      const root = document.documentElement;
-      const W = parseInt(getComputedStyle(root).getPropertyValue('--adW'), 10);
-      const H = parseInt(getComputedStyle(root).getPropertyValue('--adH'), 10);
-      const slots = document.querySelectorAll('.ad-slot');
-
-      function sizeAds() {
-        slots.forEach(slot => {
-          const inner = slot.querySelector('.ad-inner');
-          if (!inner) return;
-
-          // Reset transform before measuring; measure unscaled parent
-          inner.style.transform = 'none';
-
-          const avail = slot.clientWidth; // unaffected by transforms
-          if (avail < W) {
-            const scale = avail / W;
-            inner.style.transform = `scale(${scale})`;
-            slot.style.height = `${Math.round(H * scale)}px`;
-          } else {
-            inner.style.transform = 'none';
-            slot.style.height = `${H}px`;
-          }
-        });
-      }
-
-      // Initial layout + resize handler (registered once)
-      sizeAds();
-      window.addEventListener('resize', sizeAds, { passive: true });
-
-      // Optional: observe container size changes (e.g., grid/layout shifts)
-      if ('ResizeObserver' in window) {
-        const ro = new ResizeObserver(sizeAds);
-        slots.forEach(s => ro.observe(s));
-      }
-    })();
-  </script>
+  <!-- No JS needed for ads; they render at native size for verification -->
 </body>
 </html>

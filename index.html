@@ -15,8 +15,8 @@
       --muted:#9ab;
       --border:#1d232c;
       --radius:16px;
-      --adW:300px;  /* change to 250px for square ads */
-      --adH:250px;  /* change to 250px for square ads */
+      --adW:300px;  /* 250px if you switch to squares */
+      --adH:250px;  /* 250px if you switch to squares */
     }
     html,body{height:100%}
     body{
@@ -58,9 +58,7 @@
       background:#2a8cff; color:#fff; border:1px solid rgba(0,0,0,.25);
     }
 
-    .cta{
-      text-align:center; color:#cbd6e6; margin:2px 0 18px;
-    }
+    .cta{ text-align:center; color:#cbd6e6; margin:2px 0 18px; }
 
     .card{
       background: linear-gradient(180deg, var(--panel), #0d1116 100%);
@@ -91,12 +89,19 @@
 
     /* Ad slot styling */
     .ad-slot{
-      width: min(var(--adW), 94%); height: var(--adH);
-      background: #0f1420;
+      width:min(var(--adW), 94%);
+      height:var(--adH);
+      background:#0f1420;
       border:1px dashed #3a4458; border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
+      display:flex; align-items:flex-start; justify-content:flex-start;
+      padding:6px; overflow:hidden;
       color:#9fb1d1; font:600 13px/1.2 system-ui,-apple-system,Segoe UI,Roboto;
-      text-align:center; padding:6px;
+    }
+    /* inner wrapper is what gets scaled; parent stays unscaled for measurement */
+    .ad-inner{
+      width:var(--adW);
+      height:var(--adH);
+      transform-origin: top left;
     }
     .ad-slot small{ display:block; color:#7f90ab; font-weight:500; margin-top:6px; }
 
@@ -104,7 +109,7 @@
     @media (max-width:520px){ .grid{ gap:8px } .qr{ width:90% } }
   </style>
 
-  <!-- JSON-LD: no raw address; donate action points to this support page -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -137,10 +142,7 @@
         "potentialAction": {
           "@type": "DonateAction",
           "name": "Support via Ethereum",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://walletstarter.com/support/"
-          },
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://walletstarter.com/support/" },
           "recipient": { "@id": "https://walletstarter.com/#org" }
         },
         "inLanguage": "en"
@@ -180,25 +182,31 @@
 
         <!-- Row 2: A-Ads (cells 4–6) -->
         <div class="cell">
-            <!-- A-ADS SLOT 1 (paste your A-Ads code below) -->
-            <!-- Example placeholder iframe; REPLACE this entire iframe with the A-Ads snippet they give you -->
-            <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-              <iframe data-aa='2407947' src='//ad.a-ads.com/2407947/?size=300x250'
-                style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
+          <div class="ad-slot">
+            <div class="ad-inner">
+              <!-- REPLACE with the official A-Ads snippet -->
+              <iframe data-aa="2407947" src="//ad.a-ads.com/2407947/?size=300x250"
+                style="border:0;padding:0;width:300px;height:250px;overflow:hidden;display:block;"></iframe>
             </div>
-        </div>
-
-        <div class="cell">
-        <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-          <iframe data-aa='2407948' src='//ad.a-ads.com/2407948/?size=300x250'
-                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-        </div>
+          </div>
         </div>
 
         <div class="cell">
           <div class="ad-slot">
-            <!-- A-ADS SLOT 3 (paste your A-Ads code below) -->
-            <iframe title="Ad slot 3" width="100%" height="100%" srcdoc="<p style='margin:0;padding:8px;color:#bcd;'>Contact: proton@youralias.example</p>"></iframe>
+            <div class="ad-inner">
+              <!-- REPLACE with the official A-Ads snippet -->
+              <iframe data-aa="2407948" src="//ad.a-ads.com/2407948/?size=300x250"
+                style="border:0;padding:0;width:300px;height:250px;overflow:hidden;display:block;"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell">
+          <div class="ad-slot">
+            <div class="ad-inner">
+              <iframe title="Ad slot 3" width="300" height="250"
+                srcdoc="<p style='margin:0;padding:8px;color:#bcd;'>Contact: proton@youralias.example</p>"></iframe>
+            </div>
           </div>
         </div>
 
@@ -209,7 +217,7 @@
         <a class="cell" href="/img/frame 8.png" target="_blank" rel="nofollow noopener" title="Open QR #8">
           <img class="qr" src="/img/frame 8.png" alt="Support QR 8" /><span class="label">#8</span>
         </a>
-        <a class="cell" href="/img/framme 9.png" target="_blank" rel="nofollow noopener" title="Open QR #9">
+        <a class="cell" href="/img/frame 9.png" target="_blank" rel="nofollow noopener" title="Open QR #9">
           <img class="qr" src="/img/frame 9.png" alt="Support QR 9" /><span class="label">#9</span>
         </a>
       </div>
@@ -218,25 +226,43 @@
     </section>
   </main>
 
-  <!-- Optional: small helper to keep iframes proportional on narrow screens -->
   <script>
-    (function resizeAds(){
+    // Responsive ads without compounding shrink on scroll/resize
+    (() => {
+      const root = document.documentElement;
+      const W = parseInt(getComputedStyle(root).getPropertyValue('--adW'), 10);
+      const H = parseInt(getComputedStyle(root).getPropertyValue('--adH'), 10);
       const slots = document.querySelectorAll('.ad-slot');
-      const W = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--adW'));
-      const H = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--adH'));
-      slots.forEach(s => {
-        const box = s.getBoundingClientRect();
-        if (box.width < W) {
-          const scale = box.width / W;
-          s.style.transform = 'scale(' + scale + ')';
-          s.style.transformOrigin = 'top left';
-          s.style.height = (H * scale) + 'px';
-        } else {
-          s.style.transform = 'none';
-          s.style.height = H + 'px';
-        }
-      });
-      window.addEventListener('resize', resizeAds, { passive:true });
+
+      function sizeAds() {
+        slots.forEach(slot => {
+          const inner = slot.querySelector('.ad-inner');
+          if (!inner) return;
+
+          // Reset transform before measuring; measure unscaled parent
+          inner.style.transform = 'none';
+
+          const avail = slot.clientWidth; // unaffected by transforms
+          if (avail < W) {
+            const scale = avail / W;
+            inner.style.transform = `scale(${scale})`;
+            slot.style.height = `${Math.round(H * scale)}px`;
+          } else {
+            inner.style.transform = 'none';
+            slot.style.height = `${H}px`;
+          }
+        });
+      }
+
+      // Initial layout + resize handler (registered once)
+      sizeAds();
+      window.addEventListener('resize', sizeAds, { passive: true });
+
+      // Optional: observe container size changes (e.g., grid/layout shifts)
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(sizeAds);
+        slots.forEach(s => ro.observe(s));
+      }
     })();
   </script>
 </body>
